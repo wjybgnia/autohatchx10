@@ -28,9 +28,39 @@ if oldGui then
     oldGui:Destroy()
 end
 
---// MAXIMUM SPEED FUNCTION (DIRECT CALLS ONLY)
+--// MAXIMUM SPEED FUNCTION (DIRECT CALLS ONLY - EXTREME MODE)
 local function FastLoop()
-    -- Direct calls with no function overhead - MAXIMUM SPEED
+    -- 50 DIRECT CALLS PER FRAME - ABSOLUTE MAXIMUM
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
     invokeServer(drawHeroRemote, arg1, arg2)
     invokeServer(drawHeroRemote, arg1, arg2)
     invokeServer(drawHeroRemote, arg1, arg2)
@@ -92,7 +122,7 @@ TitleBarCorner.Parent = TitleBar
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, -10, 1, 0)
 Title.Position = UDim2.new(0, 5, 0, 0)
-Title.Text = "AUTO HATCH x10 MAX SPEED!"
+Title.Text = "AUTO HATCH x10 EXTREME!"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.SourceSansBold
@@ -217,8 +247,8 @@ AutoHatchCheckbox.InputBegan:Connect(function(input)
         
         if running then
             AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-            -- Instant burst (100 immediate calls)
-            for i = 1, 100 do
+            -- MASSIVE INSTANT BURST (500 immediate calls)
+            for i = 1, 500 do
                 invokeServer(drawHeroRemote, arg1, arg2)
             end
             -- Connect ALL possible events for absolute maximum speed
@@ -226,10 +256,16 @@ AutoHatchCheckbox.InputBegan:Connect(function(input)
             renderSteppedConnection = RunService.RenderStepped:Connect(FastLoop)
             steppedConnection = RunService.Stepped:Connect(FastLoop)
             postSimulationConnection = RunService.PostSimulation:Connect(FastLoop)
-            -- 10 continuous background loops for extreme speed
-            for j = 1, 10 do
+            -- 20 continuous background threads for EXTREME speed
+            for j = 1, 20 do
                 task.spawn(function()
                     while running do
+                        -- 10 calls per thread iteration
+                        invokeServer(drawHeroRemote, arg1, arg2)
+                        invokeServer(drawHeroRemote, arg1, arg2)
+                        invokeServer(drawHeroRemote, arg1, arg2)
+                        invokeServer(drawHeroRemote, arg1, arg2)
+                        invokeServer(drawHeroRemote, arg1, arg2)
                         invokeServer(drawHeroRemote, arg1, arg2)
                         invokeServer(drawHeroRemote, arg1, arg2)
                         invokeServer(drawHeroRemote, arg1, arg2)
@@ -238,6 +274,14 @@ AutoHatchCheckbox.InputBegan:Connect(function(input)
                     end
                 end)
             end
+            -- Additional high-speed continuous loop
+            task.spawn(function()
+                while running do
+                    for k = 1, 100 do
+                        invokeServer(drawHeroRemote, arg1, arg2)
+                    end
+                end
+            end)
         else
             AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
             if connection then
