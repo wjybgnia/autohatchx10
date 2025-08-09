@@ -44,8 +44,8 @@ MainFrame.ResetOnSpawn = false
 MainFrame.IgnoreGuiInset = true
 
 local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 180, 0, 140)
-Frame.Position = UDim2.new(0.5, -90, 0.5, -70)
+Frame.Size = UDim2.new(0, 180, 0, 110)
+Frame.Position = UDim2.new(0.5, -90, 0.5, -55)
 Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 Frame.BackgroundTransparency = 0.1
 Frame.Parent = MainFrame
@@ -107,9 +107,11 @@ local AutoHatchCheck = Instance.new("TextLabel")
 AutoHatchCheck.Size = UDim2.new(1, 0, 1, 0)
 AutoHatchCheck.BackgroundTransparency = 1
 AutoHatchCheck.Text = "✓"
-AutoHatchCheck.TextColor3 = Color3.fromRGB(0, 255, 0)
+AutoHatchCheck.TextColor3 = Color3.fromRGB(0, 255, 100)
 AutoHatchCheck.Font = Enum.Font.SourceSansBold
-AutoHatchCheck.TextSize = 16
+AutoHatchCheck.TextSize = 18
+AutoHatchCheck.TextStrokeTransparency = 0.5
+AutoHatchCheck.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 AutoHatchCheck.Parent = AutoHatchCheckbox
 AutoHatchCheck.Visible = false
 
@@ -124,40 +126,10 @@ AutoHatchLabel.TextSize = 14
 AutoHatchLabel.TextXAlignment = Enum.TextXAlignment.Left
 AutoHatchLabel.Parent = AutoHatchFrame
 
--- Auto Sell Checkbox (disabled)
-local AutoSellFrame = Instance.new("Frame")
-AutoSellFrame.Size = UDim2.new(1, -10, 0, 25)
-AutoSellFrame.Position = UDim2.new(0, 5, 0, 70)
-AutoSellFrame.BackgroundTransparency = 1
-AutoSellFrame.Parent = Frame
-
-local AutoSellCheckbox = Instance.new("Frame")
-AutoSellCheckbox.Size = UDim2.new(0, 20, 0, 20)
-AutoSellCheckbox.Position = UDim2.new(1, -25, 0, 2)
-AutoSellCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-AutoSellCheckbox.BorderSizePixel = 1
-AutoSellCheckbox.BorderColor3 = Color3.fromRGB(100, 100, 100)
-AutoSellCheckbox.Parent = AutoSellFrame
-
-local AutoSellCorner = Instance.new("UICorner")
-AutoSellCorner.CornerRadius = UDim.new(0, 3)
-AutoSellCorner.Parent = AutoSellCheckbox
-
-local AutoSellLabel = Instance.new("TextLabel")
-AutoSellLabel.Size = UDim2.new(1, -30, 1, 0)
-AutoSellLabel.Position = UDim2.new(0, 0, 0, 0)
-AutoSellLabel.BackgroundTransparency = 1
-AutoSellLabel.Text = "Auto Sell"
-AutoSellLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
-AutoSellLabel.Font = Enum.Font.SourceSans
-AutoSellLabel.TextSize = 14
-AutoSellLabel.TextXAlignment = Enum.TextXAlignment.Left
-AutoSellLabel.Parent = AutoSellFrame
-
 -- Speed Section
 local SpeedLabel = Instance.new("TextLabel")
 SpeedLabel.Size = UDim2.new(0.6, 0, 0, 20)
-SpeedLabel.Position = UDim2.new(0, 5, 0, 100)
+SpeedLabel.Position = UDim2.new(0, 5, 0, 70)
 SpeedLabel.BackgroundTransparency = 1
 SpeedLabel.Text = "Hatch Speed"
 SpeedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -168,7 +140,7 @@ SpeedLabel.Parent = Frame
 
 local SpeedValue = Instance.new("TextLabel")
 SpeedValue.Size = UDim2.new(0.4, -5, 0, 20)
-SpeedValue.Position = UDim2.new(0.6, 0, 0, 100)
+SpeedValue.Position = UDim2.new(0.6, 0, 0, 70)
 SpeedValue.BackgroundTransparency = 1
 SpeedValue.Text = "MAX"
 SpeedValue.TextColor3 = Color3.fromRGB(255, 255, 255)
