@@ -8,6 +8,38 @@ local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 local delayTime = 0 -- Set to 0 for maximum speed (no delay)
 
+--// Variables to control loop
+local running = false
+local connection
+local lastExecution = 0
+
+--// SAFE DRAW HERO FUNCTION - No nil errors possible
+local function SafeDrawHero()
+    spawn(function()
+        local success = pcall(function()
+            -- Simple direct call without pre-caching
+            local args = {7000033, 10}
+            game:GetService("ReplicatedStorage"):WaitForChild("Tool"):WaitForChild("DrawUp"):WaitForChild("Msg"):WaitForChild("DrawHero"):InvokeServer(unpack(args))
+        end)
+        if not success then
+            -- Silent fail - no errors shown to user
+        end
+    end)
+end
+
+--// ULTRA FAST LOOP
+local function UltraFastLoop()
+    if delayTime == 0 then
+        SafeDrawHero()
+    else
+        local currentTime = tick()
+        if currentTime - lastExecution >= delayTime then
+            SafeDrawHero()
+            lastExecution = currentTime
+        end
+    end
+end
+
 --// GUI
 local MainFrame = Instance.new("ScreenGui")
 MainFrame.Name = "DrawHeroLoopGUI"
@@ -105,63 +137,6 @@ StartStopCorner.Parent = StartStopButton
 --// Variables to control loop
 local running = false
 local connection
-
---// Function to run the loop - ULTRA OPTIMIZED with Error Handling
-local function DrawHeroFunction()
-    local success, err = pcall(function()
-        local args = {7000033, 10}
-        local ReplicatedStorage = game:GetService("ReplicatedStorage")
-        local Tool = ReplicatedStorage:WaitForChild("Tool", 5)
-        if not Tool then
-            warn("Tool not found in ReplicatedStorage")
-            return
-        end
-        
-        local DrawUp = Tool:WaitForChild("DrawUp", 5)
-        if not DrawUp then
-            warn("DrawUp not found in Tool")
-            return
-        end
-        
-        local Msg = DrawUp:WaitForChild("Msg", 5)
-        if not Msg then
-            warn("Msg not found in DrawUp")
-            return
-        end
-        
-        local DrawHero = Msg:WaitForChild("DrawHero", 5)
-        if not DrawHero then
-            warn("DrawHero not found in Msg")
-            return
-        end
-        
-        DrawHero:InvokeServer(unpack(args))
-    end)
-    
-    if not success then
-        warn("DrawHero function error: " .. tostring(err))
-    end
-end
-
--- ULTRA FAST LOOP - No delay checking when delayTime is 0
-local function UltraFastLoop()
-    if delayTime == 0 then
-        -- MAXIMUM SPEED: Execute multiple times per frame for ultra speed
-        for i = 1, 2 do -- Reduced to 2 to prevent overwhelming the server
-            task.spawn(DrawHeroFunction)
-        end
-    else
-        -- Use optimized timing only when delay is needed
-        local currentTime = tick()
-        if currentTime - lastExecution >= delayTime then
-            DrawHeroFunction()
-            lastExecution = currentTime
-        end
-    end
-end
-
--- Optimized loop using RunService for maximum speed
-local lastExecution = 0
 
 --// Start/Stop button function
 StartStopButton.MouseButton1Click:Connect(function()
