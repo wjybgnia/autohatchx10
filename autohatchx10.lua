@@ -1,42 +1,32 @@
+--// AUTO HATCH x10 BY RISCKYAW - ERROR-FREE VERSION
 --// Services
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
 --// Variables
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
-local delayTime = 0 -- Set to 0 for maximum speed (no delay)
-
---// Variables to control loop
+local delayTime = 0
 local running = false
 local connection
-local lastExecution = 0
 
---// SAFE DRAW HERO FUNCTION - No nil errors possible
-local function SafeDrawHero()
-    spawn(function()
-        local success = pcall(function()
-            -- Simple direct call without pre-caching
+--// ULTRA SAFE DRAW HERO FUNCTION
+local function DrawHero()
+    coroutine.wrap(function()
+        pcall(function()
             local args = {7000033, 10}
-            game:GetService("ReplicatedStorage"):WaitForChild("Tool"):WaitForChild("DrawUp"):WaitForChild("Msg"):WaitForChild("DrawHero"):InvokeServer(unpack(args))
+            game:GetService("ReplicatedStorage").Tool.DrawUp.Msg.DrawHero:InvokeServer(unpack(args))
         end)
-        if not success then
-            -- Silent fail - no errors shown to user
-        end
-    end)
+    end)()
 end
 
---// ULTRA FAST LOOP
-local function UltraFastLoop()
-    if delayTime == 0 then
-        SafeDrawHero()
-    else
-        local currentTime = tick()
-        if currentTime - lastExecution >= delayTime then
-            SafeDrawHero()
-            lastExecution = currentTime
-        end
+--// FAST LOOP
+local lastTime = 0
+local function FastLoop()
+    local currentTime = tick()
+    if currentTime - lastTime >= delayTime then
+        DrawHero()
+        lastTime = currentTime
     end
 end
 
@@ -145,7 +135,7 @@ StartStopButton.MouseButton1Click:Connect(function()
         StartStopButton.Text = "Stop"
         StartStopButton.BackgroundColor3 = Color3.fromRGB(120, 40, 40)
         -- Use RunService for MAXIMUM performance
-        connection = RunService.Heartbeat:Connect(UltraFastLoop)
+        connection = RunService.Heartbeat:Connect(FastLoop)
     else
         StartStopButton.Text = "Start"
         StartStopButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
