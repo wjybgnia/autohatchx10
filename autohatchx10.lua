@@ -1,7 +1,8 @@
---// AUTO HATCH x10 BY RISCKYAW - ERROR-FREE VERSION
---// Services
+--// AUTO HATCH x10 BY RISCKYAW - ULTRA FAST VERSION
+--// Services (pre-cached for maximum speed)
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 --// Variables
 local player = Players.LocalPlayer
@@ -10,30 +11,45 @@ local delayTime = 0
 local running = false
 local connection
 
+-- Ultra-fast optimization variables
+local drawHeroRemote = ReplicatedStorage:WaitForChild("Tool"):WaitForChild("DrawUp"):WaitForChild("Msg"):WaitForChild("DrawHero")
+local args = {7000033, 10}
+local spawn = task.spawn
+local defer = task.defer
+local invokeServer = drawHeroRemote.InvokeServer
+
+-- Multiple connection types for maximum speed
+local heartbeatConnection = nil
+local renderSteppedConnection = nil
+
 --// CLEANUP OLD GUI INSTANCES
 local oldGui = playerGui:FindFirstChild("DrawHeroLoopGUI")
 if oldGui then
     oldGui:Destroy()
 end
 
---// ULTRA SAFE DRAW HERO FUNCTION
+--// ULTRA FAST DRAW HERO FUNCTION (NO DELAYS)
 local function DrawHero()
-    coroutine.wrap(function()
-        pcall(function()
-            local args = {7000033, 10}
-            game:GetService("ReplicatedStorage").Tool.DrawUp.Msg.DrawHero:InvokeServer(unpack(args))
-        end)
-    end)()
+    -- Multiple parallel calls for extreme speed
+    spawn(function()
+        invokeServer(drawHeroRemote, unpack(args))
+    end)
+    defer(function()
+        invokeServer(drawHeroRemote, unpack(args))
+    end)
+    spawn(function()
+        invokeServer(drawHeroRemote, unpack(args))
+    end)
 end
 
---// FAST LOOP
-local lastTime = 0
+--// EXTREME SPEED LOOP (NO DELAYS, MULTIPLE CALLS PER FRAME)
 local function FastLoop()
-    local currentTime = tick()
-    if currentTime - lastTime >= delayTime then
-        DrawHero()
-        lastTime = currentTime
-    end
+    -- Execute multiple times per frame for maximum speed
+    DrawHero()
+    DrawHero()
+    DrawHero()
+    DrawHero()
+    DrawHero()
 end
 
 --// GUI
@@ -75,7 +91,7 @@ TitleBarCorner.Parent = TitleBar
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, -10, 1, 0)
 Title.Position = UDim2.new(0, 5, 0, 0)
-Title.Text = "AUTO HATCH x10!"
+Title.Text = "AUTO HATCH x10 ULTRA FAST!"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.SourceSansBold
@@ -200,12 +216,31 @@ AutoHatchCheckbox.InputBegan:Connect(function(input)
         
         if running then
             AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            -- Ultra-fast burst when starting
+            for i = 1, 15 do
+                spawn(function()
+                    DrawHero()
+                end)
+            end
+            -- Connect multiple events for maximum speed
             connection = RunService.Heartbeat:Connect(FastLoop)
+            renderSteppedConnection = RunService.RenderStepped:Connect(FastLoop)
+            -- Additional continuous loop for extreme speed
+            spawn(function()
+                while running do
+                    DrawHero()
+                    task.wait()
+                end
+            end)
         else
             AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
             if connection then
                 connection:Disconnect()
                 connection = nil
+            end
+            if renderSteppedConnection then
+                renderSteppedConnection:Disconnect()
+                renderSteppedConnection = nil
             end
         end
     end
