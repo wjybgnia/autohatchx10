@@ -35,6 +35,7 @@ local MainFrame = Instance.new("ScreenGui")
 MainFrame.Name = "DrawHeroLoopGUI"
 MainFrame.Parent = playerGui
 MainFrame.ResetOnSpawn = false
+MainFrame.IgnoreGuiInset = true
 
 local Frame = Instance.new("Frame")
 Frame.Size = UDim2.new(0, 200, 0, 50)
@@ -45,6 +46,7 @@ Frame.Parent = MainFrame
 Frame.Draggable = true
 Frame.Active = true
 Frame.Selectable = true
+Frame.BorderSizePixel = 0
 
 -- Add rounded corners
 local UICorner = Instance.new("UICorner")
@@ -56,7 +58,8 @@ TitleBar.Size = UDim2.new(1, 0, 0, 20)
 TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 TitleBar.BackgroundTransparency = 0.3
 TitleBar.Parent = Frame
-TitleBar.Active = true
+TitleBar.Active = false
+TitleBar.BorderSizePixel = 0
 
 -- Rounded corners for title bar
 local TitleBarCorner = Instance.new("UICorner")
@@ -73,6 +76,7 @@ Title.Font = Enum.Font.SourceSans
 Title.TextSize = 14
 Title.TextXAlignment = Enum.TextXAlignment.Left
 Title.Parent = TitleBar
+Title.Active = false
 
 local CloseButton = Instance.new("TextButton")
 CloseButton.Size = UDim2.new(0, 20, 0, 20)
@@ -160,6 +164,34 @@ CloseButton.MouseButton1Click:Connect(function()
 end)
 
 -- Title bar hover effects for drag indication
+local UserInputService = game:GetService("UserInputService")
+
+-- Manual drag implementation as backup
+local dragging = false
+local dragStart = nil
+local startPos = nil
+
+TitleBar.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = Frame.Position
+    end
+end)
+
+TitleBar.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local delta = input.Position - dragStart
+        Frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
+
 TitleBar.MouseEnter:Connect(function()
     TitleBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 end)
