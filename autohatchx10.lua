@@ -10,6 +10,12 @@ local delayTime = 0
 local running = false
 local connection
 
+--// CLEANUP OLD GUI INSTANCES
+local oldGui = playerGui:FindFirstChild("DrawHeroLoopGUI")
+if oldGui then
+    oldGui:Destroy()
+end
+
 --// ULTRA SAFE DRAW HERO FUNCTION
 local function DrawHero()
     coroutine.wrap(function()
