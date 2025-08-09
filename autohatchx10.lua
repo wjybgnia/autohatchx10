@@ -38,135 +38,192 @@ MainFrame.ResetOnSpawn = false
 MainFrame.IgnoreGuiInset = true
 
 local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 200, 0, 50)
-Frame.Position = UDim2.new(0.5, -100, 0.5, -25)
-Frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Frame.BackgroundTransparency = 0.2
+Frame.Size = UDim2.new(0, 180, 0, 140)
+Frame.Position = UDim2.new(0.5, -90, 0.5, -70)
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.BackgroundTransparency = 0.1
 Frame.Parent = MainFrame
 Frame.Draggable = true
 Frame.Active = true
 Frame.Selectable = true
 Frame.BorderSizePixel = 0
 
--- Add rounded corners
+-- Rounded corners
 local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0, 6)
+UICorner.CornerRadius = UDim.new(0, 8)
 UICorner.Parent = Frame
 
+-- Title Bar
 local TitleBar = Instance.new("Frame")
-TitleBar.Size = UDim2.new(1, 0, 0, 20)
-TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-TitleBar.BackgroundTransparency = 0.3
+TitleBar.Size = UDim2.new(1, 0, 0, 30)
+TitleBar.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+TitleBar.BackgroundTransparency = 0.2
 TitleBar.Parent = Frame
 TitleBar.Active = false
 TitleBar.BorderSizePixel = 0
 
--- Rounded corners for title bar
 local TitleBarCorner = Instance.new("UICorner")
-TitleBarCorner.CornerRadius = UDim.new(0, 6)
+TitleBarCorner.CornerRadius = UDim.new(0, 8)
 TitleBarCorner.Parent = TitleBar
 
 local Title = Instance.new("TextLabel")
-Title.Size = UDim2.new(1, -40, 1, 0)
+Title.Size = UDim2.new(1, -10, 1, 0)
 Title.Position = UDim2.new(0, 5, 0, 0)
-Title.Text = "AUTO HATCH x10 BY RISCKYAW"
-Title.TextColor3 = Color3.fromRGB(220, 220, 220)
+Title.Text = "AUTO HATCH x10!"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
-Title.Font = Enum.Font.SourceSans
-Title.TextSize = 14
-Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.Font = Enum.Font.SourceSansBold
+Title.TextSize = 16
+Title.TextXAlignment = Enum.TextXAlignment.Center
 Title.Parent = TitleBar
 Title.Active = false
 
-local CloseButton = Instance.new("TextButton")
-CloseButton.Size = UDim2.new(0, 20, 0, 20)
-CloseButton.Position = UDim2.new(1, -20, 0, 0)
-CloseButton.Text = "X"
-CloseButton.Font = Enum.Font.SourceSans
-CloseButton.TextSize = 14
-CloseButton.TextColor3 = Color3.fromRGB(220, 220, 220)
-CloseButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-CloseButton.BackgroundTransparency = 0.3
-CloseButton.BorderSizePixel = 0
-CloseButton.Parent = TitleBar
+-- Auto Hatch Checkbox
+local AutoHatchFrame = Instance.new("Frame")
+AutoHatchFrame.Size = UDim2.new(1, -10, 0, 25)
+AutoHatchFrame.Position = UDim2.new(0, 5, 0, 40)
+AutoHatchFrame.BackgroundTransparency = 1
+AutoHatchFrame.Parent = Frame
 
--- Rounded corners for close button
-local CloseButtonCorner = Instance.new("UICorner")
-CloseButtonCorner.CornerRadius = UDim.new(0, 6)
-CloseButtonCorner.Parent = CloseButton
+local AutoHatchCheckbox = Instance.new("Frame")
+AutoHatchCheckbox.Size = UDim2.new(0, 20, 0, 20)
+AutoHatchCheckbox.Position = UDim2.new(1, -25, 0, 2)
+AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+AutoHatchCheckbox.BorderSizePixel = 1
+AutoHatchCheckbox.BorderColor3 = Color3.fromRGB(100, 100, 100)
+AutoHatchCheckbox.Parent = AutoHatchFrame
 
--- Delay TextBox (25% of width)
-local DelayBox = Instance.new("TextBox")
-DelayBox.Size = UDim2.new(0.25, -10, 0, 25)
-DelayBox.Position = UDim2.new(0, 5, 1, -30)
-DelayBox.Text = tostring(delayTime)
-DelayBox.PlaceholderText = "Delay"
-DelayBox.TextColor3 = Color3.fromRGB(220, 220, 220)
-DelayBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-DelayBox.BackgroundTransparency = 0.3
-DelayBox.Font = Enum.Font.SourceSans
-DelayBox.TextSize = 14
-DelayBox.Parent = Frame
+local AutoHatchCorner = Instance.new("UICorner")
+AutoHatchCorner.CornerRadius = UDim.new(0, 3)
+AutoHatchCorner.Parent = AutoHatchCheckbox
 
--- Rounded corners for delay box
-local DelayBoxCorner = Instance.new("UICorner")
-DelayBoxCorner.CornerRadius = UDim.new(0, 4)
-DelayBoxCorner.Parent = DelayBox
+local AutoHatchCheck = Instance.new("TextLabel")
+AutoHatchCheck.Size = UDim2.new(1, 0, 1, 0)
+AutoHatchCheck.BackgroundTransparency = 1
+AutoHatchCheck.Text = "✓"
+AutoHatchCheck.TextColor3 = Color3.fromRGB(0, 255, 0)
+AutoHatchCheck.Font = Enum.Font.SourceSansBold
+AutoHatchCheck.TextSize = 16
+AutoHatchCheck.Parent = AutoHatchCheckbox
+AutoHatchCheck.Visible = false
 
-local StartStopButton = Instance.new("TextButton")
-StartStopButton.Size = UDim2.new(0.75, -15, 0, 25)
-StartStopButton.Position = UDim2.new(0.25, 5, 1, -30)
-StartStopButton.Text = "Start"
-StartStopButton.Font = Enum.Font.SourceSans
-StartStopButton.TextSize = 14
-StartStopButton.TextColor3 = Color3.fromRGB(220, 220, 220)
-StartStopButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-StartStopButton.BackgroundTransparency = 0.3
-StartStopButton.BorderSizePixel = 0
-StartStopButton.Parent = Frame
+local AutoHatchLabel = Instance.new("TextLabel")
+AutoHatchLabel.Size = UDim2.new(1, -30, 1, 0)
+AutoHatchLabel.Position = UDim2.new(0, 0, 0, 0)
+AutoHatchLabel.BackgroundTransparency = 1
+AutoHatchLabel.Text = "Auto Hatch"
+AutoHatchLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoHatchLabel.Font = Enum.Font.SourceSans
+AutoHatchLabel.TextSize = 14
+AutoHatchLabel.TextXAlignment = Enum.TextXAlignment.Left
+AutoHatchLabel.Parent = AutoHatchFrame
 
--- Rounded corners for start/stop button
-local StartStopCorner = Instance.new("UICorner")
-StartStopCorner.CornerRadius = UDim.new(0, 4)
-StartStopCorner.Parent = StartStopButton
+-- Auto Sell Checkbox (disabled)
+local AutoSellFrame = Instance.new("Frame")
+AutoSellFrame.Size = UDim2.new(1, -10, 0, 25)
+AutoSellFrame.Position = UDim2.new(0, 5, 0, 70)
+AutoSellFrame.BackgroundTransparency = 1
+AutoSellFrame.Parent = Frame
 
---// Variables to control loop
-local running = false
-local connection
+local AutoSellCheckbox = Instance.new("Frame")
+AutoSellCheckbox.Size = UDim2.new(0, 20, 0, 20)
+AutoSellCheckbox.Position = UDim2.new(1, -25, 0, 2)
+AutoSellCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+AutoSellCheckbox.BorderSizePixel = 1
+AutoSellCheckbox.BorderColor3 = Color3.fromRGB(100, 100, 100)
+AutoSellCheckbox.Parent = AutoSellFrame
 
---// Start/Stop button function
-StartStopButton.MouseButton1Click:Connect(function()
-    running = not running
-    if running then
-        StartStopButton.Text = "Stop"
-        StartStopButton.BackgroundColor3 = Color3.fromRGB(120, 40, 40)
-        -- Use RunService for MAXIMUM performance
-        connection = RunService.Heartbeat:Connect(FastLoop)
-    else
-        StartStopButton.Text = "Start"
-        StartStopButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        -- Disconnect the RunService connection
-        if connection then
-            connection:Disconnect()
-            connection = nil
+local AutoSellCorner = Instance.new("UICorner")
+AutoSellCorner.CornerRadius = UDim.new(0, 3)
+AutoSellCorner.Parent = AutoSellCheckbox
+
+local AutoSellLabel = Instance.new("TextLabel")
+AutoSellLabel.Size = UDim2.new(1, -30, 1, 0)
+AutoSellLabel.Position = UDim2.new(0, 0, 0, 0)
+AutoSellLabel.BackgroundTransparency = 1
+AutoSellLabel.Text = "Auto Sell"
+AutoSellLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
+AutoSellLabel.Font = Enum.Font.SourceSans
+AutoSellLabel.TextSize = 14
+AutoSellLabel.TextXAlignment = Enum.TextXAlignment.Left
+AutoSellLabel.Parent = AutoSellFrame
+
+-- Speed Section
+local SpeedLabel = Instance.new("TextLabel")
+SpeedLabel.Size = UDim2.new(0.6, 0, 0, 20)
+SpeedLabel.Position = UDim2.new(0, 5, 0, 100)
+SpeedLabel.BackgroundTransparency = 1
+SpeedLabel.Text = "Hatch Speed"
+SpeedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+SpeedLabel.Font = Enum.Font.SourceSans
+SpeedLabel.TextSize = 14
+SpeedLabel.TextXAlignment = Enum.TextXAlignment.Left
+SpeedLabel.Parent = Frame
+
+local SpeedValue = Instance.new("TextLabel")
+SpeedValue.Size = UDim2.new(0.4, -5, 0, 20)
+SpeedValue.Position = UDim2.new(0.6, 0, 0, 100)
+SpeedValue.BackgroundTransparency = 1
+SpeedValue.Text = "MAX"
+SpeedValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+SpeedValue.Font = Enum.Font.SourceSansBold
+SpeedValue.TextSize = 14
+SpeedValue.TextXAlignment = Enum.TextXAlignment.Right
+SpeedValue.Parent = Frame
+
+-- Credit
+local Credit = Instance.new("TextLabel")
+Credit.Size = UDim2.new(1, -10, 0, 15)
+Credit.Position = UDim2.new(0, 5, 1, -20)
+Credit.BackgroundTransparency = 1
+Credit.Text = "BY: RISCKYAW"
+Credit.TextColor3 = Color3.fromRGB(150, 150, 150)
+Credit.Font = Enum.Font.SourceSans
+Credit.TextSize = 12
+Credit.TextXAlignment = Enum.TextXAlignment.Center
+Credit.Parent = Frame
+
+--// CHECKBOX FUNCTIONS
+AutoHatchCheckbox.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        running = not running
+        AutoHatchCheck.Visible = running
+        
+        if running then
+            AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            connection = RunService.Heartbeat:Connect(FastLoop)
+        else
+            AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+            if connection then
+                connection:Disconnect()
+                connection = nil
+            end
         end
     end
 end)
 
---// Close button function
-CloseButton.MouseButton1Click:Connect(function()
-    -- Clean up connections before destroying
-    if connection then
-        connection:Disconnect()
-        connection = nil
+AutoHatchFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        running = not running
+        AutoHatchCheck.Visible = running
+        
+        if running then
+            AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            connection = RunService.Heartbeat:Connect(FastLoop)
+        else
+            AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+            if connection then
+                connection:Disconnect()
+                connection = nil
+            end
+        end
     end
-    MainFrame:Destroy()
 end)
 
--- Title bar hover effects for drag indication
+-- Title bar drag functionality
 local UserInputService = game:GetService("UserInputService")
 
--- Manual drag implementation as backup
+-- Manual drag implementation
 local dragging = false
 local dragStart = nil
 local startPos = nil
@@ -192,45 +249,15 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
-TitleBar.MouseEnter:Connect(function()
-    TitleBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-end)
-
-TitleBar.MouseLeave:Connect(function()
-    TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-end)
-
--- Button hover effects
-CloseButton.MouseEnter:Connect(function()
-    CloseButton.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
-end)
-
-CloseButton.MouseLeave:Connect(function()
-    CloseButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-end)
-
-StartStopButton.MouseEnter:Connect(function()
-    if running then
-        StartStopButton.BackgroundColor3 = Color3.fromRGB(140, 50, 50)
-    else
-        StartStopButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+-- Hover effects
+AutoHatchCheckbox.MouseEnter:Connect(function()
+    if not running then
+        AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     end
 end)
 
-StartStopButton.MouseLeave:Connect(function()
-    if running then
-        StartStopButton.BackgroundColor3 = Color3.fromRGB(120, 40, 40)
-    else
-        StartStopButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    end
-end)
-
--- Delay box input handling
-DelayBox.FocusLost:Connect(function(enterPressed)
-    local newDelay = tonumber(DelayBox.Text)
-    if newDelay and newDelay >= 0 then -- Allow 0 for no delay
-        delayTime = newDelay
-    else
-        DelayBox.Text = tostring(delayTime)
+AutoHatchCheckbox.MouseLeave:Connect(function()
+    if not running then
+        AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     end
 end)
