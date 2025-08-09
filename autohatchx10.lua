@@ -84,6 +84,26 @@ Title.TextXAlignment = Enum.TextXAlignment.Center
 Title.Parent = TitleBar
 Title.Active = false
 
+-- Close Button
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 20, 0, 20)
+CloseButton.Position = UDim2.new(1, -22, 0, 5)
+CloseButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+CloseButton.BorderSizePixel = 0
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.TextSize = 12
+CloseButton.Parent = TitleBar
+
+local CloseButtonCorner = Instance.new("UICorner")
+CloseButtonCorner.CornerRadius = UDim.new(0, 3)
+CloseButtonCorner.Parent = CloseButton
+
+CloseButton.MouseButton1Click:Connect(function()
+    MainFrame:Destroy()
+end)
+
 -- Auto Hatch Checkbox
 local AutoHatchFrame = Instance.new("Frame")
 AutoHatchFrame.Size = UDim2.new(1, -10, 0, 25)
@@ -103,17 +123,28 @@ local AutoHatchCorner = Instance.new("UICorner")
 AutoHatchCorner.CornerRadius = UDim.new(0, 3)
 AutoHatchCorner.Parent = AutoHatchCheckbox
 
-local AutoHatchCheck = Instance.new("TextLabel")
-AutoHatchCheck.Size = UDim2.new(1, 0, 1, 0)
-AutoHatchCheck.BackgroundTransparency = 1
-AutoHatchCheck.Text = "✓"
-AutoHatchCheck.TextColor3 = Color3.fromRGB(0, 255, 100)
-AutoHatchCheck.Font = Enum.Font.SourceSansBold
-AutoHatchCheck.TextSize = 18
-AutoHatchCheck.TextStrokeTransparency = 0.5
-AutoHatchCheck.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+-- Checkmark background (red/black square like in screenshot)
+local AutoHatchCheck = Instance.new("Frame")
+AutoHatchCheck.Size = UDim2.new(0.8, 0, 0.8, 0)
+AutoHatchCheck.Position = UDim2.new(0.1, 0, 0.1, 0)
+AutoHatchCheck.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+AutoHatchCheck.BorderSizePixel = 0
 AutoHatchCheck.Parent = AutoHatchCheckbox
 AutoHatchCheck.Visible = false
+
+local AutoHatchCheckCorner = Instance.new("UICorner")
+AutoHatchCheckCorner.CornerRadius = UDim.new(0, 2)
+AutoHatchCheckCorner.Parent = AutoHatchCheck
+
+-- White checkmark symbol
+local AutoHatchSymbol = Instance.new("TextLabel")
+AutoHatchSymbol.Size = UDim2.new(1, 0, 1, 0)
+AutoHatchSymbol.BackgroundTransparency = 1
+AutoHatchSymbol.Text = "✓"
+AutoHatchSymbol.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoHatchSymbol.Font = Enum.Font.SourceSansBold
+AutoHatchSymbol.TextSize = 14
+AutoHatchSymbol.Parent = AutoHatchCheck
 
 local AutoHatchLabel = Instance.new("TextLabel")
 AutoHatchLabel.Size = UDim2.new(1, -30, 1, 0)
@@ -163,24 +194,6 @@ Credit.Parent = Frame
 
 --// CHECKBOX FUNCTIONS
 AutoHatchCheckbox.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        running = not running
-        AutoHatchCheck.Visible = running
-        
-        if running then
-            AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-            connection = RunService.Heartbeat:Connect(FastLoop)
-        else
-            AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-            if connection then
-                connection:Disconnect()
-                connection = nil
-            end
-        end
-    end
-end)
-
-AutoHatchFrame.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
         running = not running
         AutoHatchCheck.Visible = running
