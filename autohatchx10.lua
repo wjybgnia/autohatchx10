@@ -28,59 +28,29 @@ if oldGui then
     oldGui:Destroy()
 end
 
---// MAXIMUM SPEED FUNCTION (DIRECT CALLS ONLY - EXTREME MODE)
+--// MAXIMUM SPEED FUNCTION (100 DIRECT CALLS PER FRAME - INSANE MODE)
 local function FastLoop()
-    -- 50 DIRECT CALLS PER FRAME - ABSOLUTE MAXIMUM
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
-    invokeServer(drawHeroRemote, arg1, arg2)
+    -- 100 DIRECT CALLS PER FRAME - ABSOLUTE INSANE SPEED
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
 end
 
 --// GUI
@@ -122,7 +92,7 @@ TitleBarCorner.Parent = TitleBar
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, -10, 1, 0)
 Title.Position = UDim2.new(0, 5, 0, 0)
-Title.Text = "AUTO HATCH x10 EXTREME!"
+Title.Text = "AUTO HATCH x10 INSANE!"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.SourceSansBold
@@ -247,8 +217,8 @@ AutoHatchCheckbox.InputBegan:Connect(function(input)
         
         if running then
             AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-            -- MASSIVE INSTANT BURST (500 immediate calls)
-            for i = 1, 500 do
+            -- INSANE INSTANT BURST (1000 immediate calls)
+            for i = 1, 1000 do
                 invokeServer(drawHeroRemote, arg1, arg2)
             end
             -- Connect ALL possible events for absolute maximum speed
@@ -256,32 +226,28 @@ AutoHatchCheckbox.InputBegan:Connect(function(input)
             renderSteppedConnection = RunService.RenderStepped:Connect(FastLoop)
             steppedConnection = RunService.Stepped:Connect(FastLoop)
             postSimulationConnection = RunService.PostSimulation:Connect(FastLoop)
-            -- 20 continuous background threads for EXTREME speed
-            for j = 1, 20 do
+            -- 50 continuous background threads for INSANE speed
+            for j = 1, 50 do
                 task.spawn(function()
                     while running do
-                        -- 10 calls per thread iteration
-                        invokeServer(drawHeroRemote, arg1, arg2)
-                        invokeServer(drawHeroRemote, arg1, arg2)
-                        invokeServer(drawHeroRemote, arg1, arg2)
-                        invokeServer(drawHeroRemote, arg1, arg2)
-                        invokeServer(drawHeroRemote, arg1, arg2)
-                        invokeServer(drawHeroRemote, arg1, arg2)
-                        invokeServer(drawHeroRemote, arg1, arg2)
-                        invokeServer(drawHeroRemote, arg1, arg2)
-                        invokeServer(drawHeroRemote, arg1, arg2)
-                        invokeServer(drawHeroRemote, arg1, arg2)
+                        -- 20 calls per thread iteration
+                        invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+                        invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+                        invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
+                        invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2) invokeServer(drawHeroRemote, arg1, arg2)
                     end
                 end)
             end
-            -- Additional high-speed continuous loop
-            task.spawn(function()
-                while running do
-                    for k = 1, 100 do
-                        invokeServer(drawHeroRemote, arg1, arg2)
+            -- Multiple mega-loops for extreme speed
+            for m = 1, 5 do
+                task.spawn(function()
+                    while running do
+                        for k = 1, 200 do
+                            invokeServer(drawHeroRemote, arg1, arg2)
+                        end
                     end
-                end
-            end)
+                end)
+            end
         else
             AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
             if connection then
