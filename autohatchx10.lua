@@ -44,6 +44,7 @@ Frame.BackgroundTransparency = 0.2
 Frame.Parent = MainFrame
 Frame.Draggable = true
 Frame.Active = true
+Frame.Selectable = true
 
 -- Add rounded corners
 local UICorner = Instance.new("UICorner")
@@ -55,6 +56,7 @@ TitleBar.Size = UDim2.new(1, 0, 0, 20)
 TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 TitleBar.BackgroundTransparency = 0.3
 TitleBar.Parent = Frame
+TitleBar.Active = true
 
 -- Rounded corners for title bar
 local TitleBarCorner = Instance.new("UICorner")
@@ -155,6 +157,15 @@ CloseButton.MouseButton1Click:Connect(function()
         connection = nil
     end
     MainFrame:Destroy()
+end)
+
+-- Title bar hover effects for drag indication
+TitleBar.MouseEnter:Connect(function()
+    TitleBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+end)
+
+TitleBar.MouseLeave:Connect(function()
+    TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 end)
 
 -- Button hover effects
