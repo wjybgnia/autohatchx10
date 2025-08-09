@@ -14,6 +14,7 @@ local connection
 -- Ultra-fast optimization variables
 local drawHeroRemote = ReplicatedStorage:WaitForChild("Tool"):WaitForChild("DrawUp"):WaitForChild("Msg"):WaitForChild("DrawHero")
 local args = {7000033, 10}
+local arg1, arg2 = 7000033, 10  -- Pre-unpacked for maximum speed
 local spawn = task.spawn
 local defer = task.defer
 local invokeServer = drawHeroRemote.InvokeServer
@@ -21,6 +22,7 @@ local invokeServer = drawHeroRemote.InvokeServer
 -- Multiple connection types for maximum speed
 local heartbeatConnection = nil
 local renderSteppedConnection = nil
+local steppedConnection = nil
 
 --// CLEANUP OLD GUI INSTANCES
 local oldGui = playerGui:FindFirstChild("DrawHeroLoopGUI")
@@ -28,28 +30,49 @@ if oldGui then
     oldGui:Destroy()
 end
 
---// ULTRA FAST DRAW HERO FUNCTION (NO DELAYS)
+--// ULTRA FAST DRAW HERO FUNCTION (MAXIMUM SPEED)
 local function DrawHero()
-    -- Multiple parallel calls for extreme speed
+    -- Immediate execution with pre-unpacked args
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    
+    -- Additional parallel calls
     spawn(function()
-        invokeServer(drawHeroRemote, unpack(args))
+        invokeServer(drawHeroRemote, arg1, arg2)
+        invokeServer(drawHeroRemote, arg1, arg2)
     end)
     defer(function()
-        invokeServer(drawHeroRemote, unpack(args))
-    end)
-    spawn(function()
-        invokeServer(drawHeroRemote, unpack(args))
+        invokeServer(drawHeroRemote, arg1, arg2)
+        invokeServer(drawHeroRemote, arg1, arg2)
     end)
 end
 
---// EXTREME SPEED LOOP (NO DELAYS, MULTIPLE CALLS PER FRAME)
+--// LIGHTNING SPEED LOOP (MAXIMUM CALLS PER FRAME)
 local function FastLoop()
-    -- Execute multiple times per frame for maximum speed
-    DrawHero()
-    DrawHero()
-    DrawHero()
-    DrawHero()
-    DrawHero()
+    -- Direct calls with pre-unpacked args for absolute maximum speed
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    invokeServer(drawHeroRemote, arg1, arg2)
+    
+    -- Additional function calls
+    for i = 1, 5 do
+        DrawHero()
+    end
 end
 
 --// GUI
@@ -91,7 +114,7 @@ TitleBarCorner.Parent = TitleBar
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, -10, 1, 0)
 Title.Position = UDim2.new(0, 5, 0, 0)
-Title.Text = "AUTO HATCH x10 ULTRA FAST!"
+Title.Text = "AUTO HATCH x10 LIGHTNING!"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.SourceSansBold
@@ -216,22 +239,26 @@ AutoHatchCheckbox.InputBegan:Connect(function(input)
         
         if running then
             AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-            -- Ultra-fast burst when starting
-            for i = 1, 15 do
+            -- Massive burst when starting (50 immediate calls)
+            for i = 1, 50 do
                 spawn(function()
                     DrawHero()
                 end)
             end
-            -- Connect multiple events for maximum speed
+            -- Connect multiple events for absolute maximum speed
             connection = RunService.Heartbeat:Connect(FastLoop)
             renderSteppedConnection = RunService.RenderStepped:Connect(FastLoop)
-            -- Additional continuous loop for extreme speed
-            spawn(function()
-                while running do
-                    DrawHero()
-                    task.wait()
-                end
-            end)
+            steppedConnection = RunService.Stepped:Connect(FastLoop)
+            -- Multiple continuous loops for extreme speed
+            for j = 1, 5 do
+                spawn(function()
+                    while running do
+                        DrawHero()
+                        DrawHero()
+                        DrawHero()
+                    end
+                end)
+            end
         else
             AutoHatchCheckbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
             if connection then
@@ -241,6 +268,10 @@ AutoHatchCheckbox.InputBegan:Connect(function(input)
             if renderSteppedConnection then
                 renderSteppedConnection:Disconnect()
                 renderSteppedConnection = nil
+            end
+            if steppedConnection then
+                steppedConnection:Disconnect()
+                steppedConnection = nil
             end
         end
     end
