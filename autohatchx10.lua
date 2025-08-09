@@ -22,10 +22,18 @@ local renderSteppedConnection = nil
 local steppedConnection = nil
 local postSimulationConnection = nil
 
---// CLEANUP OLD GUI INSTANCES
+--// CLEANUP OLD GUI INSTANCES (THOROUGH CLEANUP)
 local oldGui = playerGui:FindFirstChild("DrawHeroLoopGUI")
 if oldGui then
     oldGui:Destroy()
+    wait(0.1) -- Small delay to ensure cleanup
+end
+
+-- Additional cleanup for any GUI with similar names
+for _, gui in pairs(playerGui:GetChildren()) do
+    if gui.Name:find("DrawHero") or gui.Name:find("AUTO HATCH") then
+        gui:Destroy()
+    end
 end
 
 --// MAXIMUM SPEED FUNCTION (100 DIRECT CALLS PER FRAME - INSANE MODE)
@@ -92,7 +100,7 @@ TitleBarCorner.Parent = TitleBar
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, -10, 1, 0)
 Title.Position = UDim2.new(0, 5, 0, 0)
-Title.Text = "AUTO HATCH x10 INSANE"
+Title.Text = "AUTO HATCH x10"  -- Clean title without INSANE
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.SourceSansBold
