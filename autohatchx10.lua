@@ -92,7 +92,7 @@ TitleBarCorner.Parent = TitleBar
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, -10, 1, 0)
 Title.Position = UDim2.new(0, 5, 0, 0)
-Title.Text = "AUTO HATCH x10 INSANE!"
+Title.Text = "AUTO HATCH x10"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.SourceSansBold
@@ -199,14 +199,14 @@ SpeedValue.Parent = Frame
 
 -- Credit
 local Credit = Instance.new("TextLabel")
-Credit.Size = UDim2.new(1, -10, 0, 15)
+Credit.Size = UDim2.new(0.5, 0, 0, 15)
 Credit.Position = UDim2.new(0, 5, 1, -20)
 Credit.BackgroundTransparency = 1
 Credit.Text = "BY: RISCKYAW"
 Credit.TextColor3 = Color3.fromRGB(150, 150, 150)
 Credit.Font = Enum.Font.SourceSans
 Credit.TextSize = 12
-Credit.TextXAlignment = Enum.TextXAlignment.Center
+Credit.TextXAlignment = Enum.TextXAlignment.Left
 Credit.Parent = Frame
 
 --// CHECKBOX FUNCTIONS
